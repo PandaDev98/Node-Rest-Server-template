@@ -15,33 +15,15 @@ class Server {
     }
     middlewares() {
         //CORS
-        this.app.use(cors);
+        this.app.use(cors());
         //Public directory
         this.app.use(express.static('public'));
     }
 
     //Routes
     routes() {
-        this.app.get('/api', (req, res) => {
-            res.json({
-                msg: 'Get API'
-            })
-        });
-        this.app.put('/api', (req, res) => {
-            res.json({
-                msg: 'Put API'
-            })
-        });
-        this.app.post('/api', (req, res) => {
-            res.status(201).json({
-                msg: 'Post API'
-            })
-        });
-        this.app.delete('/api', (req, res) => {
-            res.json({
-                msg: 'Delete API'
-            })
-        });
+        this.app.use('/api/users', require('../routes/user'));
+        
     }
 
     listen() {
