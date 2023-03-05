@@ -16,6 +16,10 @@ class Server {
     middlewares() {
         //CORS
         this.app.use(cors());
+
+        //Body parsing and read
+        this.app.use(express.json());
+
         //Public directory
         this.app.use(express.static('public'));
     }
@@ -23,7 +27,7 @@ class Server {
     //Routes
     routes() {
         this.app.use('/api/users', require('../routes/user'));
-        
+
     }
 
     listen() {
